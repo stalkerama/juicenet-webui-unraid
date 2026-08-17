@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Juicenet-WebUI</Name>
+  <Repository>ghcr.io/stalkerama/juicenet-webui-unraid:latest</Repository>
+  <Registry>https://github.com/stalkerama/juicenet-webui-unraid/pkgs/container/juicenet-webui-unraid</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/stalkerama/juicenet-webui-unraid/issues</Support>
+  <Project>https://github.com/WebForks/juicenet-webui</Project>
+  <Overview>Unraid packaging for the original WebForks/juicenet-webui project. This repository does not patch or modify the upstream application source. The image is built directly from the upstream Dockerfile and automatically follows upstream main.</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:3000]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/stalkerama/juicenet-webui-unraid/main/unraid/juicenet-webui.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/WebForks/juicenet-webui/main/public/globe.svg</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>0</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+
+  <Config Name="WebUI Port" Target="3000" Default="3000" Mode="tcp" Description="Juicenet WebUI container port." Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+
+  <Config Name="Config" Target="/config" Default="/mnt/user/appdata/juicenet-webui/config" Mode="rw" Description="Persistent Juicenet configuration, UI settings, history, status, and queue history." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/juicenet-webui/config</Config>
+
+  <Config Name="Working Data" Target="/data" Default="/mnt/user/appdata/juicenet-webui/data" Mode="rw" Description="Persistent Juicenet working data. Contains NZBs, appdata, temporary/raw data, and failed data beneath /data." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/juicenet-webui/data</Config>
+
+  <Config Name="Jobs" Target="/jobs" Default="/mnt/user/appdata/juicenet-webui/jobs" Mode="rw" Description="Persistent upload queue job files." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/juicenet-webui/jobs</Config>
+
+  <Config Name="Media" Target="/media" Default="" Mode="ro" Description="Choose the Unraid share or folder containing media/files Juicenet should browse and upload. It is mounted read-only inside the container as /media." Type="Path" Display="always" Required="true" Mask="false"></Config>
+
+  <Config Name="UI Username" Target="JUICENET_UI_USERNAME" Default="admin" Mode="" Description="Username for Juicenet WebUI authentication. Authentication is enabled when username and password are set." Type="Variable" Display="always" Required="false" Mask="false">admin</Config>
+
+  <Config Name="UI Password" Target="JUICENET_UI_PASSWORD" Default="" Mode="" Description="Password for Juicenet WebUI authentication." Type="Variable" Display="always" Required="false" Mask="true"></Config>
+
+  <Config Name="UI Secret" Target="JUICENET_UI_SECRET" Default="" Mode="" Description="Optional secret used to sign the authentication cookie." Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <Config Name="CONFIG_DIR" Target="CONFIG_DIR" Default="/config" Mode="" Description="Upstream config directory." Type="Variable" Display="advanced" Required="true" Mask="false">/config</Config>
+  <Config Name="MEDIA_ROOT" Target="MEDIA_ROOT" Default="/media" Mode="" Description="Upstream media browser root." Type="Variable" Display="advanced" Required="true" Mask="false">/media</Config>
+  <Config Name="JOBS_DIR" Target="JOBS_DIR" Default="/jobs" Mode="" Description="Upstream queue jobs directory." Type="Variable" Display="advanced" Required="true" Mask="false">/jobs</Config>
+  <Config Name="NZB_DIR" Target="NZB_DIR" Default="/data/nzbs" Mode="" Description="Generated NZB output directory." Type="Variable" Display="advanced" Required="true" Mask="false">/data/nzbs</Config>
+  <Config Name="APPDATA_DIR" Target="APPDATA_DIR" Default="/data/appdata" Mode="" Description="Juicenet application data directory." Type="Variable" Display="advanced" Required="true" Mask="false">/data/appdata</Config>
+  <Config Name="JUICENET_CONFIG" Target="JUICENET_CONFIG" Default="/config/juicenet.yaml" Mode="" Description="Juicenet YAML configuration path." Type="Variable" Display="advanced" Required="true" Mask="false">/config/juicenet.yaml</Config>
+  <Config Name="HISTORY_FILE" Target="HISTORY_FILE" Default="/config/juicenet-history.ndjson" Mode="" Description="Upload history file." Type="Variable" Display="advanced" Required="true" Mask="false">/config/juicenet-history.ndjson</Config>
+  <Config Name="LOG_LEVEL_FILE" Target="LOG_LEVEL_FILE" Default="/config/juicenet-loglevel.txt" Mode="" Description="Log-level state file." Type="Variable" Display="advanced" Required="true" Mask="false">/config/juicenet-loglevel.txt</Config>
+  <Config Name="STATUS_FILE" Target="STATUS_FILE" Default="/config/juicenet-queue-status.json" Mode="" Description="Current queue status file." Type="Variable" Display="advanced" Required="true" Mask="false">/config/juicenet-queue-status.json</Config>
+  <Config Name="QUEUE_HISTORY_FILE" Target="QUEUE_HISTORY_FILE" Default="/config/juicenet-queue-history.ndjson" Mode="" Description="Queue history file." Type="Variable" Display="advanced" Required="true" Mask="false">/config/juicenet-queue-history.ndjson</Config>
+  <Config Name="NODE_ENV" Target="NODE_ENV" Default="production" Mode="" Description="Node runtime mode." Type="Variable" Display="advanced" Required="true" Mask="false">production</Config>
+</Container>
